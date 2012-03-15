@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+body{
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#666;
+	scrollbar-3dlight-color:#253F80;
+	scrollbar-arrow-color:#253F80;
+	scrollbar-base-color:#CFCFCF;
+	scrollbar-darkshadow-color:#FFFFFF;
+	scrollbar-face-color:#AFC4F0;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-shadow-color:#253F80;
+	}
+	
+        
+	A:link    { color:#5C5C5C; text-decoration:none;}
+	A:visited { color:#5C5C5C; text-decoration:none;}
+	A:active  { color:#5C5C5C; text-decoration:none;}
+	A:hover   { color:#FF6633; text-decoration:underline;}
+	
+.index_bg_left{
+	background-image:url(../img/login_left.jpg);
+	background-position:left;
+	background-repeat:no-repeat;
+	}
+.index_bg_right{
+	background-image:url(../img/login_right.jpg);
+	background-position:right;
+	background-repeat:no-repeat;
+	}
+.index_bg_mid{
+	/*background-image:url(../img/login_mid.jpg);*/
+	background-position:left;
+	background-repeat:no-repeat;
+	}
+.loginindex{
+	padding-left:270px;
+	}
+.logininput{
+	color:#fff;
+	border:#fff solid 1px;
+	background-color:#1A60A8;
+	width:80px;
+	}
+.fontw{
+	color:#fff;
+	font-weight:bold;
+	font-size:10px;
+	}
+.head { background-image:url(../img/head_bg.jpg); width:100%; height:88px; }
+.foot { background: #1A60A8; text-align: center; width:100%; height:30px; }
+.panel{ background-image:url(../img/panel_bg.jpg);width:180px;}
+.mainboard { background: #FFF; padding: 0px; }
+.head-right { background: url("../img/head_right.jpg"); background-position: right; background-repeat: no-repeat; padding: 4px; text-align: right; width: 250px; height: 80px; vertical-align:top;}
+
+.linktop A:link { color:#fff; font-size:12px; text-decoration:none;}
+.linktop A:visited { color:#fff; font-size:12px; text-decoration:none;}
+.linktop A:active { color:#fff; font-size:12px; text-decoration:none;}
+.linktop A:hover { color:#fff; font-size:12px; text-decoration:underline;}
+.linktop { color:#fff; font-size:12px; }
+.panel { background: url("../img/panel_bg.jpg"); width:180px; }
+.switch { background: url("../img/panel_bg.jpg"); background-position: right; width: 8px; }
+.tree { background: #EFF4FC; border: 1px #666FA5 solid; padding: 2px; }
+.panel-head { background: url("../img/panel_head.jpg"); text-align: center; width: 172px; height: 25px; }
+.tab-center { text-align: center; }
+.panel-foot { background: url("../img/panel_foot.jpg"); background-position: bottom left; background-repeat: no-repeat; width: 172px; height: 1px; }
+.panel-foot-r { background: url("../img/panel_foot.jpg"); background-position: bottom right; background-repeat: no-repeat; width: 8px; height: 1px; }

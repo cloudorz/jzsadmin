@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+body{
+	margin:0;
+	border:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#666;
+	scrollbar-3dlight-color:#253F80;
+	scrollbar-arrow-color:#fff;
+	scrollbar-base-color:#CFCFCF;
+	scrollbar-darkshadow-color:#FFFFFF;
+	scrollbar-face-color:#AFC4F0;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-shadow-color:#253F80;
+	}
+
+TD {
+	font-size: 12px;
+}
+
+.dtree {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666;
+	white-space: nowrap;
+	padding: 0px 0px 0px 0px;
+}
+.dtree img {
+	border: 0px;
+	vertical-align: middle;
+}
+.dtree a {
+	color: #333;
+	text-decoration: none;
+}
+.dtree a.node, .dtree a.nodeSel {
+	white-space: nowrap;
+	padding: 1px 2px 1px 2px;
+}
+.dtree a.node:hover, .dtree a.nodeSel:hover {
+	color: #000000;
+	text-decoration: underline;
+}
+.dtree a.nodeSel {
+	background-color: #1A60A8; color: #FFFFFF;
+}
+.dtree .clip {
+	overflow: hidden;
+}

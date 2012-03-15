@@ -1,0 +1,102 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong class="t_title">网站内容添加</strong></td>
+  </tr>
+</table>
+<div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
+{% from "macros/_forms.html" import render_errors %}
+<form method="POST" action="" enctype="multipart/form-data" id="article_form">
+{{ form.hidden_tag() }}
+<table width="100%" border="0" cellspacing="1" cellpadding="0" class="twidth">
+  <tr class="table-field">
+    <td width="23%" class="t_b">项目</td>
+    <td width="77%" class="t_b">内容</td>
+  </tr>
+  <tr>
+    <td class="td1">{{ form.title.label }}</td>
+    <td class="td22">{{ form.title(style="width:550px;") }} {{ render_errors(form.title) }}</td>
+  </tr>  
+  <tr>
+    <td class="td1">{{ form.brief.label }}</td>
+    <td class="td22">{{ form.brief(style="width:550;height:100px;") }} {{ render_errors(form.brief) }}</td>
+  </tr>   
+  <tr>
+    <td class="td1">{{ form.desc.label }}</td>
+    <td class="td22">{{ form.desc(style="width:550;height:150px;font-size:12px;") }} {{ render_errors(form.desc) }}</td>
+  </tr>
+  <tr>
+    <td class="td1">{{ form.tags.label }}</td>
+    <td class="td22">
+        {{ form.tags(style="width:320px;") }} {{ render_errors(form.tags) }}<br\>
+        {% for e in cates %}
+            <span><a class="cateTag" data="{{ e.label }}" href="javascript:void(0);">{{ e.name }}</a></span>
+        {% endfor %}
+        </td>
+  </tr>
+    <tr>
+    <td class="td1">所在城市</td>
+    <td class="td22">
+        <select id="city_label" name="city_label">
+            {% for c in cities %}
+            <option {% if c.label == city_label %}selected="selected"{% endif %} value="{{ c.label }}">{{ c.name }}</option>
+            {% endfor %}
+        </select>
+    </td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.address.label }}</td>
+    <td class="td22">{{ form.address(style="width:320px;") }} {{ render_errors(form.address) }}</td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.worktime.label }}</td>
+    <td class="td22">{{ form.worktime() }} {{ render_errors(form.worktime) }}</td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.serviceitems.label }}</td>
+    <td class="td22">{{ form.serviceitems(style="width:320px;") }} {{ render_errors(form.serviceitems) }}</td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.serviceareas.label }}</td>
+    <td class="td22">{{ form.serviceareas(style="width:320px;") }} {{ render_errors(form.serviceareas) }}</td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.contracts.label }}</td>
+    <td class="td22">{{ form.contracts(style="width:320px;") }} {{ render_errors(form.contracts) }}</td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.linkman.label }}</td>
+    <td class="td22">{{ form.linkman() }} {{ render_errors(form.linkman) }}</td>
+  </tr>
+    <tr>
+    <td class="td1">{{ form.location.label }}</td>
+    <td class="td22">{{ form.location() }} {{ render_errors(form.location) }}</td>
+  </tr>
+</table>
+<div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
+<div style="text-align:center">
+    {{ form.submit() }}
+    <input type="button" onclick="history.back(-1);" value="返回" />
+</div> 
+</form>
+{% endblock %}
+
+{% block footjs %}
+<script type="text/javascript" src="{{ config['STATIC_PATH'] }}js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".cateTag").live('click', function(){
+            var tag = $(this).attr('data')
+            var old = $("#tags").val();
+            if (old.trim() == ""){
+                newtags = tag; 
+            } else{
+                newtags = old + " " + tag;
+            }
+            $("#tags").val(newtags);
+            return false;
+        });
+    });
+</script>
+{% endblock %}

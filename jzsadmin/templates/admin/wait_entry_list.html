@@ -1,0 +1,57 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong class="t_title">网站内容列表</strong> [共<span class="t_red">{{ p.total }}</span>条记录 <span class="t_red">{{ p.page }}/{{ p.pages }}</span>页] </td>
+  </tr>
+</table>
+<div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
+<table width="100%" border="0" cellspacing="1" cellpadding="0" class="twidth">
+  <tr>
+    <td align="left" height="30" colspan="6" bgcolor="#FFFFFF" style="padding-left:10px;">
+        <div style="float:right;padding-right:10px;">
+            <a href="{{ url_for('wait_entry_list', status='wait') }}">等待</a> 
+            <a href="{{ url_for('wait_entry_list', status='show') }}">展示中</a> 
+            <a href="{{ url_for('wait_entry_list', status='block') }}">禁用</a> 
+        </div>
+    <form method="get" action="">
+    <input type="text" name="q" value="{{ request.args.get('q','') }}" />
+    <input type="submit" value="查询" />     
+    </form>
+    </td>
+  </tr>
+  <tr class="table-field">
+    <td width="20%" class="t_b">标题</td>
+    <td width="30%" class="t_b">简介</td>
+    <td width="15%" class="t_b">城市</td>
+    <td width="10%" class="t_b">状态</td>
+    <td width="15%" class="t_b">操作</td>
+    <td width="10%" class="t_b">选择</td>
+  </tr>
+{% for i in p.items %}
+  <tr {% if loop.index is even %}class="td1"{% else %}class="td2"{% endif %}>
+    <td><a href="{{ url_for('edit_entry', eid=i.pk, next=request.path) }}">{{ i.title }}</a></td>
+    <td>{{ i.brief }}</td>
+    <td>{{ i.city_label }}</td>
+    <td>{{ i.status }}</td>
+    <td>
+        {% if status == 'wait' or status == 'show' %}
+        <a href="{{ url_for('change_status', eid=i.pk, tostatus='block', next=request.path) }}">禁用</a> * 
+        {% endif %}
+        {% if status == 'block' or status == 'show' %}
+        <a href="{{ url_for('change_status', eid=i.pk, tostatus='wait', next=request.path) }}">等待</a> * 
+        {% endif %}
+        {% if status == 'wait' or status == 'block' %}
+        <a href="{{ url_for('change_status', eid=i.pk, tostatus='show', next=request.path) }}">显示</a> * 
+        {% endif %}
+    </td>
+    <td><input type="checkbox" name="id" value="{{ i.pk }}"></td>
+  </tr>
+{% endfor %}
+</table>
+<div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
+<div style="text-align:right">
+{% from "macros/_page.html" import render_pagination %}
+{{ render_pagination(p, 'list_entry', kwargs={'q':request.args.get('q','')}) }}
+</div>
+{% endblock %}

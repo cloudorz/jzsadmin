@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#666;
+	scrollbar-3dlight-color:#253F80;
+	scrollbar-arrow-color:#253F80;
+	scrollbar-base-color:#CFCFCF;
+	scrollbar-darkshadow-color:#FFF;
+	scrollbar-face-color:#AFC4F0;
+	scrollbar-highlight-color:#FFF;
+	scrollbar-shadow-color:#253F80;
+	}
+	
+        
+	A:link    { color:#666; text-decoration:none; font-size:12px;}
+	A:visited { color:#666; text-decoration:none; font-size:12px;}
+	A:active  { color:#666; text-decoration:none; font-size:12px;}
+	A:hover   { color:#FF6633; text-decoration:underline; font-size:12px;}
+	
+table,td{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	}
+
+.p_title{
+	font-family:黑体;
+	font-size:14px;
+	font-weight:bold;
+	color:#000;
+	text-align:center;
+	line-height:19px;
+	}
+.p_title1{
+	font-weight:bold;
+	color:#000;
+	padding-top:10px;
+	text-align:left;
+	line-height:20px;
+	}
+.p_con{
+	line-height:20px;
+	text-align:left;
+	padding-top:10px;
+	}
+.input_in { 
+	BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; FONT-SIZE: 12px; BACKGROUND: #f1f1f1; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset; FONT-FAMILY: "Arial";HEIGHT:20px;color: #555;
+ }
+select {
+	border:#555 solid 1px; height:16px; font-size:12px; color:#666;}
+ }
+.input_go{ width:25px; height:19px; border:0 solid; cursor:pointer;}
+
+.twidth {
+	background: #CCCCCC;
+}
+
+.t_red{ color:#ff0000;}
+
+.table-field TD {
+	background: url("../img/table_field_bg.jpg");
+	height: 24px;
+	text-align: center;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 0px solid #FFF;
+	border-bottom: 0px solid #FFF;
+}
+.td1 {
+	background: #EFEFEF;
+	text-align: center;
+	height: 25px;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 0px solid #FFF;
+	border-bottom: 0px solid #FFF;
+}
+.td2 {
+	background: #FFF;
+	text-align: center;
+	height:25px;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 0px solid #FFF;
+	border-bottom: 0px solid #FFF;
+}
+.td21 {
+	background: #FFF;
+	text-align: left;
+	padding:5px;
+	height:25px;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 0px solid #FFF;
+	border-bottom: 0px solid #FFF;
+}
+.t_b{ font-weight:bold;}
+
+
+.table-radio {
+	background: ;
+	text-align: center;
+	border-top: 0px solid #FFF;
+	border-left: 0px solid #FFF;
+	border-right: 0px solid #FFF;
+	border-bottom: 0px solid #FFF;
+}
+.table-checkbox {
+	background: ;
+	text-align: center;
+	border-top: 0px solid #FFF;
+	border-left: 0px solid #FFF;
+	border-right: 0px solid #FFF;
+	border-bottom: 0px solid #FFF;
+}
+.table-texterea {
+	BORDER-RIGHT: 1px inset; BORDER-TOP: 1px inset; FONT-SIZE: 12px; BACKGROUND: #f1f1f1; BORDER-LEFT: 1px inset; BORDER-BOTTOM: 1px inset; FONT-FAMILY: "Arial";color: #555;
+}
+.table-button {
+	background: #FFF;
+	color: #000000;
+	text-align: center;
+	padding-left: 6px;
+	padding-right: 6px;
+	border-top: 1px solid #FF6600;
+	border-left: 1px solid #FF6600;
+	border-right: 1px solid #FF6600;
+	border-bottom: 1px solid #FF6600;
+}
+.fontr{color:#ff0000;}
+.fontg{font-weight:bold; color:#0066FF}

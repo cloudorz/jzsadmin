@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="no" />
+<title>家政搜后台管理系统</title>
+<LINK href="{{ config['STATIC_PATH'] }}admin/css/css.css" type="text/css" rel="stylesheet">
+<script language="javascript" src="{{ config['STATIC_PATH'] }}admin/js/common.js"></script>
+</head>
+
+<body scroll=no bgcolor="#1A60A8">
+
+<form method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="139">{%- if get_flashed_messages() -%}
+	<div id="flashed">
+	{% for category, msg in get_flashed_messages(with_categories=true) %}
+		<p style="color:#fff;text-align:center;">{{ msg }}</p>
+	{% endfor %}
+	</div>
+{%- endif -%}</td>
+  </tr>
+  <tr>
+    <td height="261">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" height="261">
+		<tr>
+			<td height="1"><img border="0" src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="154" height="1"></td>
+			<td height="1"><img border="0" src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="684" height="1"></td>
+			<td height="1"><img border="0" src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="186" height="1"></td>
+		</tr>
+		  <tr>
+			<td class="index_bg_left"></td>
+			<td class="index_bg_mid" valign="top">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td height="25"></td>
+				  </tr>
+				  <tr>
+					<td height="148" align="center">{{ form.hidden_tag() }}</td>
+				  </tr>
+				  <tr>
+					<td height="39" class="loginindex"><table width="413" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td class="fontw">帐户</td>
+                        <td>{{ form.name(tabindex="1",class="logininput",style="width:100px;") }}</td>
+                        <td class="fontw">密码</td>
+                        <td>{{ form.password(tabindex="2",class="logininput",style="width:100px;") }}</td>
+                        <td>{{ form.remember(tabindex="3") }}</td>
+                        <td><input type="image" src="{{ config['STATIC_PATH'] }}admin/img/bt_login.gif" name="submit" /></td>
+                      </tr>
+                    </table></td>
+				  </tr>
+				  <tr>
+					<td height="39" align="right" class="fontw">jiazhengsou.com</td>
+				  </tr>
+				</table>
+			</td>
+			<td class="index_bg_right" align="right"></td>
+		  </tr>
+		</table>
+	</td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</table>
+</form>
+</body>
+
+
+</html>

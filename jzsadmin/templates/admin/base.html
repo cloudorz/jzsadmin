@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>家政搜后台管理系统 | POWERED BY 杭州佰桥科技有限公司</title>
+<link href="{{ config['STATIC_PATH'] }}admin/css/css_table.css" type="text/css" rel="stylesheet" />
+{% block headjs %}
+{% endblock %}
+</head>
+
+<body>
+{%- if get_flashed_messages() -%}
+	<div id="flashed">
+	{% for category, msg in get_flashed_messages(with_categories=true) %}
+		<span class="flash-{{ category }}">{{ msg }}</span>
+	{% endfor %}
+	</div>
+{%- endif -%}
+{% block content %}
+{% endblock %}
+{% block footjs %}
+{% endblock %}
+</body>
+</html>
