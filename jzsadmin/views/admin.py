@@ -8,7 +8,7 @@ from flaskext.principal import identity_changed, Identity, AnonymousIdentity
 
 from jzsadmin.models import Entry, User, Cate, City
 from jzsadmin.forms import LoginForm, EntryForm, CateForm, CityForm
-from jzsadmin.permissions import admin, normal
+from jzsadmin.permissions import sa, normal
 
 admin = Module(__name__)
 
@@ -294,7 +294,7 @@ def del_city(cid):
 # others operation
 @admin.route('/entry/<status>/')
 @admin.route('/entry/<status>/<int:page>/')
-@normal.require(401)
+@sa.require(401)
 def wait_entry_list(status, page=1):
 
     if page<1:page=1
@@ -315,7 +315,7 @@ def wait_entry_list(status, page=1):
     return render_template("admin/wait_entry_list.html", p=p, status=status)
 
 @admin.route('/entry/<eid>/<tostatus>')
-@normal.require(401)
+@sa.require(401)
 def change_status(eid, tostatus):
     next = request.args.get('next', '')
     entry = Entry.query.get_or_404(eid)

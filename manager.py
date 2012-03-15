@@ -15,7 +15,7 @@ manager.add_command("runserver", Server('0.0.0.0',port=8080))
 @manager.option('-p', '--password', dest='passwd', type=str)
 @manager.option('-r', '--role', dest='role', default=100, type=int)
 def adduser(name, passwd, role):
-    user = User(name=name, password=passwd)
+    user = User(name=name, password=passwd, role=role)
     user.save()
     print 'Created'
 

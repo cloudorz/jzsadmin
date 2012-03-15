@@ -8,7 +8,7 @@ from flaskext.mongoalchemy import BaseQuery
 from flaskext.principal import RoleNeed, UserNeed, Permission
 
 from jzsadmin.ext import db
-from jzsadmin.permissions import admin, normal
+from jzsadmin.permissions import sa, normal
 
 
 now = datetime.datetime.utcnow
@@ -60,11 +60,11 @@ class User(db.Document):
 
         @cached_property
         def edit(self):
-            return Permission(UserNeed(self.obj.pk)) & admin
+            return Permission(UserNeed(self.obj.pk)) & sa
 
         @cached_property
         def delete(self):
-            return Permission(UserNeed(self.obj.pk)) & admin
+            return Permission(UserNeed(self.obj.pk)) & sa
 
     @cached_property
     def permissions(self):
@@ -74,13 +74,13 @@ class User(db.Document):
     def provides(self):
         needs = [RoleNeed('auth'), UserNeed(self.pk)]
 
-        if self.is_admin:
+        if self.is_sa:
             needs.append(RoleNeed('admin'))
 
         return needs
 
     @property
-    def is_admin(self):
+    def is_sa(self):
         return self.role >= self.ADMIN
 
     @cached_property
@@ -194,11 +194,11 @@ class Entry(db.Document):
 
         @cached_property
         def edit(self):
-            return normal & admin
+            return normal & sa
 
         @cached_property
         def delete(self):
-            return admin
+            return sa
 
     @cached_property
     def permissions(self):
@@ -238,11 +238,11 @@ class City(db.Document):
 
         @cached_property
         def edit(self):
-            return normal & admin
+            return normal & sa
 
         @cached_property
         def delete(self):
-            return admin
+            return sa
 
     def get_no(self):
         return self._no
@@ -286,11 +286,11 @@ class Cate(db.Document):
 
         @cached_property
         def edit(self):
-            return normal & admin
+            return normal & sa
 
         @cached_property
         def delete(self):
-            return admin
+            return sa
 
     @cached_property
     def permissions(self):

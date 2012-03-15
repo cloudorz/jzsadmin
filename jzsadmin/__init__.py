@@ -60,11 +60,7 @@ def configure_identity(app):
 
 
 def configure_ba_handlers(app):
-
-    @app.before_request
-    def lookup_current_user():
-        # TODO
-        pass 
+    pass
 
 
 def configure_errorhandlers(app):

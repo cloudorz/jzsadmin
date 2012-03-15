@@ -2,7 +2,7 @@
 
 from flaskext.principal import RoleNeed, Permission
 
-admin = Permission(RoleNeed('admin'))
+sa = Permission(RoleNeed('admin'))
 normal = Permission(RoleNeed('auth'))
 
 # this is assigned when you want to block a permission to all
