@@ -294,7 +294,7 @@ def del_city(cid):
 # others operation
 @admin.route('/entry/<status>/')
 @admin.route('/entry/<status>/<int:page>/')
-@sa.require(401)
+@sa.require(403)
 def wait_entry_list(status, page=1):
 
     if page<1:page=1
@@ -315,7 +315,7 @@ def wait_entry_list(status, page=1):
     return render_template("admin/wait_entry_list.html", p=p, status=status)
 
 @admin.route('/entry/<eid>/<tostatus>')
-@sa.require(401)
+@sa.require(403)
 def change_status(eid, tostatus):
     next = request.args.get('next', '')
     entry = Entry.query.get_or_404(eid)
