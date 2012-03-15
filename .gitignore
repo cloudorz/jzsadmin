@@ -6,5 +6,4 @@ env
 static/i
 *.patch
 *.swp
-production.cfg
 data
