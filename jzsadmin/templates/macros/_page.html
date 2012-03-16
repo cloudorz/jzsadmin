@@ -6,7 +6,7 @@
     {% else %}
     <span class="disabled">&lt;&lt;</span> 
     {% endif %}
-    {% for i in p.iter_pages() %}
+    {% for i in p.pages|intrange %}
         {% if i %}
             {% if i==p.page %}<span class="current">{{ i }}</span>{% else %}<a href="{{ url_for(endpoint,page=i, **kwargs) }}">{{ i }}</a>{% endif %} 
         {% else %}
