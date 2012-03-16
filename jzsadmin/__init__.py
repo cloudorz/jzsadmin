@@ -35,6 +35,7 @@ def create_app(config=None, app_name=None, modules=None):
     configure_identity(app)
     configure_ba_handlers(app)
     configure_errorhandlers(app)
+    configure_template_filters(app)
 
     return app
 
@@ -89,3 +90,8 @@ def configure_errorhandlers(app):
             return jsonify(error='Sorry, an error has occurred')
         return render_template("errors/500.html", error=error)
 
+def configure_template_filters(app):
+
+    @app.template_filter()
+    def intrange(value):
+        return range(1, 1+value)
