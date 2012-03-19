@@ -117,6 +117,7 @@ def edit_entry(eid):
 
         form.populate_obj(entry)
 
+        entry.city_label = form.city_label.data
         entry.status = 'wait' # wait for check again
         entry.save()
         flash(u"更新成功")
