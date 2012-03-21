@@ -25,7 +25,7 @@ def status(city, op):
     if op not in ('wait', 'block', 'show'): 
         print "The status not allow"
     for e in Entry.query.filter(Entry.city_label==city):
-        e.city_label = op
+        e.status = op
         e.save()
     print "The task Done."
 
