@@ -24,8 +24,9 @@ def adduser(name, passwd, role):
 def status(city, op):
     if op not in ('wait', 'block', 'show'): 
         print "The status not allow"
-    Entry.query.filter(Entry.city_label==city).\
-            set(status=op)
+    for e in Entry.query.filter(Entry.city_label==city):
+        e.city_label = op
+        e.save()
     print "The task Done."
 
 if __name__ == "__main__":
