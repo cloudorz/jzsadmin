@@ -2,9 +2,10 @@
 # coding: utf-8
 
 from jzsadmin import create_app
-from jzsadmin.models import User
+from jzsadmin.models import User, Entry
 
 from flaskext.script import Server, Shell, Manager, Command, prompt_bool
+from pymongo import 
 
 
 manager = Manager(create_app('dev.cfg'))
@@ -18,6 +19,15 @@ def adduser(name, passwd, role):
     user = User(name=name, password=passwd, role=role)
     user.save()
     print 'Created'
+
+@manager.option('-c', '--city', dest='city', type=str)
+@manager.option('-o', '--operation', dest='op', type=str)
+def status(city, op):
+    if op not in ('wait', 'block', 'show'): 
+        print "The status not allow"
+    Entry.query.filter(Entry.city_label==city).\
+            set(status=op)
+    print "The task Done."
 
 if __name__ == "__main__":
     manager.run()
