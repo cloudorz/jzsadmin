@@ -5,7 +5,6 @@ from jzsadmin import create_app
 from jzsadmin.models import User, Entry
 
 from flaskext.script import Server, Shell, Manager, Command, prompt_bool
-from pymongo import 
 
 
 manager = Manager(create_app('dev.cfg'))
