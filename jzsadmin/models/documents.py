@@ -105,7 +105,7 @@ class Entry(db.Document):
     worktime = db.StringField()
     _serviceitems = db.SetField(db_field="serviceitems", item_type=db.StringField())
     _serviceareas = db.SetField(db_field="serviceareas", item_type=db.StringField())
-    _contracts = db.SetField(db_field="contracts", item_type=db.StringField())
+    _contracts = db.ListField(db_field="contracts", item_type=db.StringField())
     linkman = db.StringField()
     _tags = db.SetField(db_field='tags', item_type=db.StringField())
     grades = db.ListField(item_type=db.IntField())
@@ -169,12 +169,12 @@ class Entry(db.Document):
         return ' '.join(self._contracts)
 
     def _set_contracts(self, tags):
-        if isinstance(tags, set):
+        if isinstance(tags, list):
             self._contracts = tags
         elif isinstance(tags, basestring):
-            self._contracts = set(e.lower() for e in re.split('\s+', tags) if e)
+            self._contracts = [e.lower() for e in re.split('\s+', tags) if e]
         else:
-            self._contracts = set()
+            self._contracts = []
 
     contracts = property(_get_contracts, _set_contracts)
 
