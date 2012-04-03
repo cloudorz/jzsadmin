@@ -293,18 +293,18 @@ def del_city(cid):
     return redirect(url_for('list_city'))
 
 # others operation
-@admin.route('/entry/<status>/')
-@admin.route('/entry/<status>/<int:page>/')
+@admin.route('/entry/status/')
+@admin.route('/entry/status/<int:page>/')
 @sa.require(403)
-def wait_entry_list(status, page=1):
+def wait_entry_list(page=1):
 
     if page<1:page=1
 
     q = request.args.get('q', '')
     city = request.args.get('c', '')
     tag = request.args.get('t', '')
+    status = request.args.get('s', '')
 
-    condtions = [{'status': status}]
     if q:
         regex = re.compile(r'^.*?%s.*?$' % q)
         condtions.append({'$or': [{'title': regex},
@@ -318,15 +318,23 @@ def wait_entry_list(status, page=1):
     if tag and tag != 'all':
         condtions.append({'tags': tag})
 
+    if status and status != 'all':
+        condtions.append({'status': status})
+
     query = Entry.query.filter(*tuple(condtions))
 
     p = query.descending(Entry.created).paginate(page, per_page=Entry.PERN)
     cities = City.query.ascending(City.no)
     cates = Cate.query.ascending(City.no)
+    statuses = [
+            {'label': 'show', 'name': '显示'},
+            {'label': 'wait', 'name': '等待'}, 
+            {'label': 'block', 'name': '禁用'}]
 
     return render_template("admin/wait_entry_list.html",
             cities=cities,
             cates=cates,
+            statuses=statuses,
             p=p,
             status=status)
 

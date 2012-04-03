@@ -15,8 +15,6 @@
             <a href="{{ url_for('wait_entry_list', status='block') }}">禁用</a> 
         </div>
     <form method="get" action="">
-    <input type="text" name="q" value="{{ request.args.get('q','') }}" />
-    <input type="submit" value="查询" />     
     <select id="city" name="c">
         <option value="all">all</option>
         {% for e in cities %}
@@ -37,6 +35,18 @@
         {% endif %}
         {% endfor %}
     </select>
+    <select id="show" name="s">
+        <option value="all">all</option>
+        {% for e in statuses %}
+        {% if e.label == request.args.get('s', '') %}
+        <option selected="selected" value="{{ e.label }}">{{ e.name }}</option>
+        {% else %}
+        <option value="{{ e.label }}">{{ e.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <input type="text" name="q" value="{{ request.args.get('q','') }}" />
+    <input type="submit" value="查询" />     
     </form>
     </td>
   </tr>
