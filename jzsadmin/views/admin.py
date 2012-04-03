@@ -328,9 +328,9 @@ def wait_entry_list(page=1):
     cities = City.query.ascending(City.no)
     cates = Cate.query.ascending(City.no)
     statuses = [
-            {'label': 'show', 'name': '显示'},
-            {'label': 'wait', 'name': '等待'}, 
-            {'label': 'block', 'name': '禁用'}]
+            {'label': 'show', 'name': u'显示'},
+            {'label': 'wait', 'name': u'等待'}, 
+            {'label': 'block', 'name': u'禁用'}]
 
     return render_template("admin/wait_entry_list.html",
             cities=cities,
