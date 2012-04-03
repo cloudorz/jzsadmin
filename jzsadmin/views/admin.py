@@ -313,11 +313,11 @@ def wait_entry_list(page=1):
             {'desc': regex},
             {'tags': q}]})
 
+    if tag and tag != 'all':
+        condtions.append({'tags': tag})
+
     if city and city != 'all':
         condtions.append({'city_label': city})
-
-    if tag and tag != 'all':
-        condtions.append({'tags': {'$in': [tag]}})
 
     if status and status != 'all':
         condtions.append({'status': status})
