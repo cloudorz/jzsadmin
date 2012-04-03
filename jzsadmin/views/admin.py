@@ -300,20 +300,35 @@ def wait_entry_list(status, page=1):
 
     if page<1:page=1
 
-    q = request.args.get('q','')
+    q = request.args.get('q', '')
+    city = request.args.get('c', '')
+    tag = request.args.get('t', '')
+
+    condtions = [{'status': status}]
     if q:
         regex = re.compile(r'^.*?%s.*?$' % q)
-        query = Entry.query.filter({'status': status}, {'$or': [
-            {'title': regex},
+        condtions.append({'$or': [{'title': regex},
             {'brief': regex},
             {'desc': regex},
             {'tags': q}]})
-    else:
-        query = Entry.query.filter({'status': status})
+
+    if city:
+        condtions.append({'city_label': city})
+
+    if tag:
+        condtions.append({'tags': tag})
+
+    query = Entry.query.filter(*tuple(condtions))
 
     p = query.descending(Entry.created).paginate(page, per_page=Entry.PERN)
+    cities = City.query.ascending(City.no)
+    cates = Cate.query.ascending(City.no)
 
-    return render_template("admin/wait_entry_list.html", p=p, status=status)
+    return render_template("admin/wait_entry_list.html",
+            cities=cities,
+            cates=cates,
+            p=p,
+            status=status)
 
 @admin.route('/entry/<eid>/<tostatus>')
 @sa.require(403)

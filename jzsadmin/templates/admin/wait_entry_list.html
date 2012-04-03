@@ -17,6 +17,26 @@
     <form method="get" action="">
     <input type="text" name="q" value="{{ request.args.get('q','') }}" />
     <input type="submit" value="查询" />     
+    <select id="city" name="city">
+        <option value="all">all</option>
+        {% for e in cities %}
+        {% if e.label == request.args.get('city', '') %}
+        <option selected="selected" value="{{ e.label }}">{{ e.name }}</option>
+        {% else %}
+        <option value="{{ e.label }}">{{ e.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <select id="cate" name="cate">
+        <option value="all">all</option>
+        {% for e in cates %}
+        {% if e.label == request.args.get('cate', '') %}
+        <option selected="selected" value="{{ e.label }}">{{ e.name }}</option>
+        {% else %}
+        <option value="{{ e.label }}">{{ e.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
     </form>
     </td>
   </tr>
