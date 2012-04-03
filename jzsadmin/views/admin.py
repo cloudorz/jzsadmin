@@ -305,6 +305,7 @@ def wait_entry_list(page=1):
     tag = request.args.get('t', '')
     status = request.args.get('s', '')
 
+    condtions = [{}]
     if q:
         regex = re.compile(r'^.*?%s.*?$' % q)
         condtions.append({'$or': [{'title': regex},
