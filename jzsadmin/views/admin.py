@@ -312,10 +312,10 @@ def wait_entry_list(status, page=1):
             {'desc': regex},
             {'tags': q}]})
 
-    if city:
+    if city != 'all':
         condtions.append({'city_label': city})
 
-    if tag:
+    if tag != 'all':
         condtions.append({'tags': tag})
 
     query = Entry.query.filter(*tuple(condtions))
