@@ -317,7 +317,7 @@ def wait_entry_list(page=1):
         condtions.append({'city_label': city})
 
     if tag and tag != 'all':
-        condtions.append({'tags': tag})
+        condtions.append({'tags': {'$in': [tag]}})
 
     if status and status != 'all':
         condtions.append({'status': status})
