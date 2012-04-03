@@ -68,7 +68,7 @@ def list_entry(page=1):
             {'title': regex},
             {'brief': regex},
             {'desc': regex},
-            {'tags': q}]})
+            {'_tags': q}]})
     else:
         query = Entry.query
 
@@ -311,10 +311,10 @@ def wait_entry_list(page=1):
         condtions.append({'$or': [{'title': regex},
             {'brief': regex},
             {'desc': regex},
-            {'tags': q}]})
+            {'_tags': q}]})
 
     if tag and tag != 'all':
-        condtions.append({'tags': tag})
+        condtions.append({'_tags': tag})
 
     if city and city != 'all':
         condtions.append({'city_label': city})
