@@ -10,9 +10,9 @@
   <tr>
     <td align="left" height="30" colspan="6" bgcolor="#FFFFFF" style="padding-left:10px;">
         <div style="float:right;padding-right:10px;">
-            <a href="{{ url_for('wait_entry_list', status='wait') }}">等待</a> 
-            <a href="{{ url_for('wait_entry_list', status='show') }}">展示中</a> 
-            <a href="{{ url_for('wait_entry_list', status='block') }}">禁用</a> 
+            <a href="{{ url_for('wait_entry_list') }}">等待</a> 
+            <a href="{{ url_for('wait_entry_list') }}">展示中</a> 
+            <a href="{{ url_for('wait_entry_list') }}">禁用</a> 
         </div>
     <form method="get" action="">
     <select id="city" name="c">
@@ -82,6 +82,6 @@
 <div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
 <div style="text-align:right">
 {% from "macros/_page.html" import render_pagination %}
-{{ render_pagination(p, 'wait_entry_list', kwargs={'q':request.args.get('q',''), 'status': status}) }}
+{{ render_pagination(p, 'wait_entry_list', kwargs={'q':request.args.get('q',''), 's': request.args.get('s', ''), 't': request.args.get('t', '')}) }}
 </div>
 {% endblock %}
