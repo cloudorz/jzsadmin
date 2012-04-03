@@ -62,13 +62,13 @@
     <td>{{ i.city_label }}</td>
     <td>{{ i.status }}</td>
     <td>
-        {% if status == 'wait' or status == 'show' %}
+        {% if i.status == 'wait' or i.status == 'show' %}
         <a href="{{ url_for('change_status', eid=i.pk, tostatus='block', next=request.path) }}">禁用</a> * 
         {% endif %}
-        {% if status == 'block' or status == 'show' %}
+        {% if i.status == 'block' or i.status == 'show' %}
         <a href="{{ url_for('change_status', eid=i.pk, tostatus='wait', next=request.path) }}">等待</a> * 
         {% endif %}
-        {% if status == 'wait' or status == 'block' %}
+        {% if i.status == 'wait' or i.status == 'block' %}
         <a href="{{ url_for('change_status', eid=i.pk, tostatus='show', next=request.path) }}">显示</a> * 
         {% endif %}
     </td>

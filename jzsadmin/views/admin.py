@@ -336,8 +336,7 @@ def wait_entry_list(page=1):
             cities=cities,
             cates=cates,
             statuses=statuses,
-            p=p,
-            status=status)
+            p=p)
 
 @admin.route('/entry/<eid>/<tostatus>')
 @sa.require(403)
