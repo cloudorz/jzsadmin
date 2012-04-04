@@ -9,31 +9,12 @@
 	<div id="header">
 		<div class="wrapper">
 			<div class="logo">
-				<a href="#"><img src="css/img/logo.png"></a>
+                <a href="#"><img src="{{ config['STATIC_PATH'] }}css/img/logo.png"></a>
 			</div>
 			<div class="desc"></div>
 		</div>
 	</div>
     {% block content %}
-	<div id="home">
-		<div class="print">
-			<div class="wrapper">
-				<div class="left">
-				</div>
-				<div class="right">
-					<div class="ad">
-						<p>马桶堵了...<br>空调坏了...<br>水管裂了...</p>
-						<p class="quest">关键时候，<span>家政服务</span>哪里找?</p>
-						<p>下载我们的客户端，从此找家政不再难</p>
-					</div>
-					<div class="download">
-						<a class="iphone" href="#"><span></span>iPhone</a>
-						<a class="android" href="#"><span></span>Android</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
     {% endblock %}
     <div id="footer">
 		<div class="wrapper">
