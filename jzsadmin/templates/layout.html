@@ -1,53 +1,45 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="UTF-8">
-    <meta name="robots" content="all" />
-    <meta name="Author" content="cloucry@gmail.com" />
-    <meta name="Keywords" content="{% block key %}gist, share, search, code, program{% endblock %}"/>
-    <meta name="Description" content="{% block desc %}a coe share follow site{% endblock %}" />
-    <title>家政搜{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ config['STATIC_PATH'] }}css/main.css" >
-    {% block css %}{% endblock %}
-    <script src="{{ config['STATIC_PATH'] }}js/jquery-1.7.1.min.js" type="text/javascript"></script>
-    {% if config['GOOGLEA'] %}
-    <script type="text/javascript">
-        /*
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-29718642-1']);
-      _gaq.push(['_setDomainName', 'codewoow.com']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-      */
-
-    </script>
-    {% endif %}
-    {% block js %}{% endblock %}
+	<meta  charset = "utf-8">
+    <title>{% block title %}家政搜，搜家政{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ config['STATIC_PATH'] }}css/main.css">
 </head>
 <body>
-	<div class="wrapper">
-		<div id="siteHeader">
-            {% if get_flashed_messages() %}
-            <div id="flashed">
-                {% for category, msg in get_flashed_messages(with_categories=true) %}
-                <span class="flash-{{ category }}">{{ msg }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
-			<div class="navBox">
-                {% if g.user %}
-                {% else %}
-                {% endif %}
+	<div id="header">
+		<div class="wrapper">
+			<div class="logo">
+				<a href="#"><img src="css/img/logo.png"></a>
+			</div>
+			<div class="desc"></div>
+		</div>
+	</div>
+    {% block content %}
+	<div id="home">
+		<div class="print">
+			<div class="wrapper">
+				<div class="left">
+				</div>
+				<div class="right">
+					<div class="ad">
+						<p>马桶堵了...<br>空调坏了...<br>水管裂了...</p>
+						<p class="quest">关键时候，<span>家政服务</span>哪里找?</p>
+						<p>下载我们的客户端，从此找家政不再难</p>
+					</div>
+					<div class="download">
+						<a class="iphone" href="#"><span></span>iPhone</a>
+						<a class="android" href="#"><span></span>Android</a>
+					</div>
+				</div>
 			</div>
 		</div>
-        {%- block content %}{%- endblock %}
-		<div id="siteFooter"><span>2012©JiaZhengSou.com</span></div>
+	</div>
+    {% endblock %}
+    <div id="footer">
+		<div class="wrapper">
+			<p>移动版请访问<a href="m.jiazhengsou.com">m.jiazhengsou.com</a></p>
+			<p>©2012 家政搜<a href="http://weibo.com/jzsou">关注我们的微博</a></p>
+		</div>
 	</div>
 </body>
 </html>
