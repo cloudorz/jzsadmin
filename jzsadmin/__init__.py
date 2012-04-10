@@ -93,5 +93,9 @@ def configure_errorhandlers(app):
 def configure_template_filters(app):
 
     @app.template_filter()
-    def intrange(value):
+    def intrange(value, page):
+        if page > 6 and value > 10:
+            res = range(page-5, page+5)
+        else:
+            res = range(1, 1+value)
         return range(1, 1+value)
