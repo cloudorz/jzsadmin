@@ -102,14 +102,15 @@ def save_content(data):
     e.grades = []
     e.city_label = data['city_label']
     e.title = data['title']
-    e.brief = data['brief']
+    e.brief = data['brief'] or " "
     e.desc = data['desc']
     e.address = data['address']
     e.worktime = data['worktime']
-    e.serviceareas = data['serviceareas']
-    e.serviceitems = data['serviceitems']
+    e.serviceareas = " " if data['serviceareas'] is None else \
+            set(data['serviceareas'])
+    e.serviceitems = set(data['serviceitems'])
     e.contracts = data['contracts']
-    e.linkman = data['linkman']
+    e.linkman = data['linkman'] or " "
 
     e.save()
 
