@@ -82,6 +82,7 @@ def get_detail(url):
     else:
         data['serviceareas'] = set()
 
+    c2_list = c2.find('li')
     # linkman
     if len(c2_list) >= 1:
         data['linkman'] = _(c2_list[0]).find('.wt2 strong').text()
