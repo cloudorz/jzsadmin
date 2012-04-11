@@ -28,7 +28,6 @@ def get_url_set(city, cate):
 
 
 def get_detail(url):
-    print 'Get detail....'
     data = {}
     doc = _(url)
 
@@ -57,26 +56,37 @@ def get_detail(url):
     data['title'] = _(brief_list[0]).text()
 
     #
-    li_list = doc('.contList li')
+    c1, c2 = doc('.contList')[:2] 
+
+    c1_list = c1.find('li')
 
     # address
-    data['address'] = _(li_list[0]).find('.wt2').text()
-
-    # worktime
-    data['worktime'] = _(li_list[2]).find('.wt2').text()
-
-    # serviceareas
-    data['serviceareas'] = _(li_list[3]).find('.wt2').text()
-
-    # linkman
-    data['linkman'] = _(li_list[4]).find('.wt2 strong').text()
+    data['address'] = _(c1_list[0]).find('.wt2').text()
 
     # serviceitems
-    item_list = _(li_list[1]).find('.wt2 a')
+    item_list = _(c1_list[1]).find('.wt2 a')
     items = []
     for e in item_list:
         items.append(_(e).text())
     data['serviceitems'] = items
+
+    # worktime
+    if len(c1_list) >= 3:
+        data['worktime'] = _(c1_list[2]).find('.wt2').text()
+    else:
+        data['worktime'] = u" "
+
+    # serviceareas
+    if len(c1_list) >= 4:
+        data['serviceareas'] = _(c1_list[3]).find('.wt2').text()
+    else:
+        data['serviceareas'] = set()
+
+    # linkman
+    if len(c2_list) >= 1:
+        data['linkman'] = _(c2_list[0]).find('.wt2 strong').text()
+    else:
+        data['linkman'] = u" "
 
     # ontracts
     tel_list = doc('.tel-box span')
@@ -109,6 +119,7 @@ def save_content(data):
     e.serviceitems = set(data['serviceitems'])
     e.contracts = data['contracts']
     e.linkman = data['linkman'] or " "
+    e.status = 'block'
 
     e.save()
 
