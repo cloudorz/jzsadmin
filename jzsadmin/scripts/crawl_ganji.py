@@ -83,7 +83,6 @@ def get_detail(url):
     tels = []
     for e in tel_list:
         maybe_tel = _(e).text()
-        print maybe_tel
         if is_phone.match(maybe_tel):
             tels.append(maybe_tel)
     data['contracts'] = tels
@@ -120,5 +119,6 @@ def crawl_ganji(cy, city, cate):
     for url in get_url_set(cy, cate):
         url_all = r'http://%s.ganji.com%s' % (cy, url) 
         content_dict = get_detail(url_all)
-        content_dict['city_label'] = city
-        save_content(content_dict)
+        if content_dict:
+            content_dict['city_label'] = city
+            save_content(content_dict)
