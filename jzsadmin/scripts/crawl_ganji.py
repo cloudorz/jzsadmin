@@ -93,12 +93,24 @@ def get_detail(url):
 
 def save_content(data):
     print 'Saving...'
-    data['location'] = '0.0,0.0'
-    data['_tags'] = set()
-    data['grades'] = []
-    data['updated'] = now()
-    data['created'] = now()
-    e = Entry(**data)
+
+    e = Entry()
+    e.location = '0.0,0.0'
+    e.tags = set()
+    e.updated = now()
+    e.created = now()
+    e.grades = []
+    e.city_label = data['city_label']
+    e.title = data['title']
+    e.brief = data['brief']
+    e.desc = data['desc']
+    e.address = data['address']
+    e.worktime = data['worktime']
+    e.serviceareas = data['serviceareas']
+    e.serviceitems = data['serviceitems']
+    e.contracts = data['contracts']
+    e.linkman = data['linkman']
+
     e.save()
 
 
