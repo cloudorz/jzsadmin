@@ -98,7 +98,7 @@ def save_content(data):
     data['grades'] = []
     data['updated'] = now()
     data['created'] = now()
-    e = Entry(*data)
+    e = Entry(**data)
     e.save()
 
 
