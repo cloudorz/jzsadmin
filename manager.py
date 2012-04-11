@@ -37,6 +37,12 @@ def grap(cy, city, cate):
     crawl_ganji(cy, city, cate)
     print "Done"
 
+@manager.option('-c', '--city', dest='city', type=str)
+def delcity(city):
+    for e in Entry.query.filter_by(city_label=city):
+        e.remove()
+    print 'Done'
+
 
 if __name__ == "__main__":
     manager.run()

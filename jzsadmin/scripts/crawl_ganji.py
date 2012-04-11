@@ -105,8 +105,7 @@ def save_content(data):
     e.desc = data['desc']
     e.address = data['address']
     e.worktime = data['worktime']
-    e.serviceareas = " " if data['serviceareas'] is None else \
-            set(data['serviceareas'])
+    e.serviceareas = data['serviceareas'] or set()
     e.serviceitems = set(data['serviceitems'])
     e.contracts = data['contracts']
     e.linkman = data['linkman'] or " "
