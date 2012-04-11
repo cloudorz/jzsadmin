@@ -3,6 +3,7 @@
 
 from jzsadmin import create_app
 from jzsadmin.models import User, Entry
+from jzsadmin.scripts.crawl_ganji import crawl_ganji
 
 from flaskext.script import Server, Shell, Manager, Command, prompt_bool
 
@@ -28,6 +29,14 @@ def status(city, op):
         e.status = op
         e.save()
     print "The task Done."
+
+@manager.option('-cy', '--short_city', dest='cy', type=str)
+@manager.option('-c', '--city', dest='city', type=str)
+@manager.option('-t', '--type', desc='cate', type=str)
+def grap(cy, city, cate):
+    crawl_ganji(city, cate)
+    print "Done"
+
 
 if __name__ == "__main__":
     manager.run()
