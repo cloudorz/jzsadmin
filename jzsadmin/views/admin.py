@@ -61,20 +61,44 @@ def list_entry(page=1):
 
     if page<1:page=1
 
-    q = request.args.get('q','')
+    q = request.args.get('q', '')
+    city = request.args.get('c', '')
+    tag = request.args.get('t', '')
+    status = request.args.get('s', '')
+
+    condtions = [{}]
     if q:
         regex = re.compile(r'^.*?%s.*?$' % q)
-        query = Entry.query.filter({'$or': [
-            {'title': regex},
+        condtions.append({'$or': [{'title': regex},
             {'brief': regex},
             {'desc': regex},
             {'_tags': q}]})
-    else:
-        query = Entry.query
+
+    if tag and tag != 'all':
+        condtions.append({'_tags': tag})
+
+    if city and city != 'all':
+        condtions.append({'city_label': city})
+
+    if status and status != 'all':
+        condtions.append({'status': status})
+
+    query = Entry.query.filter(*tuple(condtions))
 
     p = query.descending(Entry.created).paginate(page, per_page=Entry.PERN)
+    cities = City.query.ascending(City.no)
+    cates = Cate.query.ascending(City.no)
+    statuses = [
+            {'label': 'show', 'name': u'显示'},
+            {'label': 'wait', 'name': u'等待'}, 
+            {'label': 'block', 'name': u'禁用'}]
 
-    return render_template("admin/entry_list.html", p=p)
+    return render_template("admin/entry_list.html",
+            cities=cities,
+            cates=cates,
+            statuses=statuses,
+            p=p)
+
 
 @admin.route('/entry/add/', methods=('GET', 'POST'))
 @normal.require(401)

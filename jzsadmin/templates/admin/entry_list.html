@@ -11,6 +11,36 @@
     <td align="left" height="30" colspan="6" bgcolor="#FFFFFF" style="padding-left:10px;">
     <div style="float:right;padding-right:10px;"><a href="{{ url_for('add_entry') }}">新增</a></div>
     <form method="get" action="">
+    <select id="city" name="c">
+        <option value="all">all</option>
+        {% for e in cities %}
+        {% if e.label == request.args.get('c', '') %}
+        <option selected="selected" value="{{ e.label }}">{{ e.name }}</option>
+        {% else %}
+        <option value="{{ e.label }}">{{ e.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <select id="cate" name="t">
+        <option value="all">all</option>
+        {% for e in cates %}
+        {% if e.label == request.args.get('t', '') %}
+        <option selected="selected" value="{{ e.label }}">{{ e.name }}</option>
+        {% else %}
+        <option value="{{ e.label }}">{{ e.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+    <select id="show" name="s">
+        <option value="all">all</option>
+        {% for e in statuses %}
+        {% if e.label == request.args.get('s', '') %}
+        <option selected="selected" value="{{ e.label }}">{{ e.name }}</option>
+        {% else %}
+        <option value="{{ e.label }}">{{ e.name }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
     <input type="text" name="q" value="{{ request.args.get('q','') }}" />
     <input type="submit" value="查询" />     
     </form>
