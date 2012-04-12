@@ -130,6 +130,7 @@ def edit_entry(eid):
 
     return render_template("admin/entry_add.html", form=form, cities=cities,
             city_label=entry.city_label,
+            entry=entry,
             cates=cates)
 
 @admin.route('/entry/<eid>/del')
@@ -137,7 +138,8 @@ def edit_entry(eid):
 def del_entry(eid):
     
     entry = Entry.query.get_or_404(eid)
-    entry.permissions.delete.test(403)
+    if entry.status != 'block':
+        entry.permissions.delete.test(403)
     entry.remove()
 
     return redirect(url_for('list_entry'))

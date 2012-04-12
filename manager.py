@@ -20,6 +20,12 @@ def adduser(name, passwd, role):
     user.save()
     print 'Created'
 
+@manager.option('-u', '--username', dest='name', type=str)
+def deluser(name):
+    user = User.query.filter_by(name=name).first()
+    user.remove()
+    print 'Del.'
+
 @manager.option('-c', '--city', dest='city', type=str)
 @manager.option('-o', '--operation', dest='op', type=str)
 def status(city, op):
