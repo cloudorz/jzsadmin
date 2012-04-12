@@ -33,25 +33,28 @@ def request(url, data=dict()):
     return source
 
 
-def get_url_set(city, cate):
-    print 'Get list of %s' % cate
-    urls = set()
-    n = 0
-    while 1:
-        url = r"http://%s.ganji.com/%s/f%d" % (city, cate, n)
-        content = request(url)
-        if content:
-            doc = _(content)
-            nodes = doc('.list .ft-14')
-            if not nodes:
-                break
-            for node in nodes:
-                url_ = _(node).attr('href')
-                text = _(node).text()
-                if not Entry.query.filter_by(title=text).first():
-                    print url_
-                    yield url_
-        n += 32
+def get_url_set(city):
+    cates = ('banjia', 'baomu', 'baojie', 'weixiu', 'jiadianweixiu',
+            'shumashoujiweixiu', 'kongtiaoyiji', 'jiazheng', 'zhongdiangong',
+            'yuesao', 'guandao', 'bianminfuwu')
+    for cate in cates:
+        print 'Get list of %s' % cate
+        n = 0
+        while 1:
+            url = r"http://%s.ganji.com/%s/f%d" % (city, cate, n)
+            content = request(url)
+            if content:
+                doc = _(content)
+                nodes = doc('.list .ft-14')
+                if not nodes:
+                    break
+                for node in nodes:
+                    url_ = _(node).attr('href')
+                    text = _(node).text()
+                    if not Entry.query.filter_by(title=text).first():
+                        print url_
+                        yield url_
+            n += 32
 
 
 def get_detail(url):
