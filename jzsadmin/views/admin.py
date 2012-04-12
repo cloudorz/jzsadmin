@@ -124,7 +124,7 @@ def edit_entry(eid):
         flash(u"更新成功")
 
         next_url = form.next.data
-        if not next_url:
+        if entry.status == 'block':
             next_entry = Entry.query.filter(
                     Entry.mongo_id!=entry.mongo_id,
                     Entry.city_label==entry.city_label,
@@ -132,7 +132,8 @@ def edit_entry(eid):
             if next_entry:
                 next_url = url_for('edit_entry', eid=next_entry.pk)
             else:
-                next_url = url_for('list_entry')
+                if not next_url:
+                    next_url = url_for('list_entry')
 
         return redirect(next_url)
 
@@ -151,14 +152,16 @@ def del_entry(eid):
     entry.remove()
 
     # get next
-    next_entry = Entry.query.filter(
-            Entry.mongo_id!=entry.mongo_id,
-            Entry.city_label==entry.city_label,
-            Entry.status=='block').first()
-    if next_entry:
-        next_url = url_for('edit_entry', eid=next_entry.pk)
-    else:
-        next_url = url_for('list_entry')
+    next_url = request.args.get('next', '')
+    if not next_url:
+        next_entry = Entry.query.filter(
+                Entry.mongo_id!=entry.mongo_id,
+                Entry.city_label==entry.city_label,
+                Entry.status=='block').first()
+        if next_entry:
+            next_url = url_for('edit_entry', eid=next_entry.pk)
+        else:
+            next_url = url_for('list_entry')
 
     return redirect(next_url)
 
