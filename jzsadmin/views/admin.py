@@ -111,6 +111,7 @@ def edit_entry(eid):
     cities = City.query.ascending(City.no)
     cates = Cate.query.ascending(City.no)
 
+
     form = EntryForm(request.form, entry, next=request.args.get('next',''))
 
     if form.validate_on_submit():
@@ -124,7 +125,14 @@ def edit_entry(eid):
 
         next_url = form.next.data
         if not next_url:
-            next_url = url_for('list_entry')
+            next_entry = Entry.query.filter(
+                    Entry.mongo_id!=entry.mongo_id,
+                    Entry.city_label==entry.city_label,
+                    Entry.status=='block').first()
+            if next_entry:
+                next_url = url_for('edit_entry', eid=next_entry.pk)
+            else:
+                next_url = url_for('list_entry')
 
         return redirect(next_url)
 
@@ -142,7 +150,17 @@ def del_entry(eid):
         entry.permissions.delete.test(403)
     entry.remove()
 
-    return redirect(url_for('list_entry'))
+    # get next
+    next_entry = Entry.query.filter(
+            Entry.mongo_id!=entry.mongo_id,
+            Entry.city_label==entry.city_label,
+            Entry.status=='block').first()
+    if next_entry:
+        next_url = url_for('edit_entry', eid=next_entry.pk)
+    else:
+        next_url = url_for('list_entry')
+
+    return redirect(next_url)
 
 
 # cates 
