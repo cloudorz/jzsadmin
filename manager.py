@@ -38,9 +38,8 @@ def status(city, op):
 
 @manager.option('-cy', '--short_city', dest='cy', type=str)
 @manager.option('-c', '--city', dest='city', type=str)
-@manager.option('-t', '--type', dest='cate', type=str)
-def grap(cy, city, cate):
-    crawl_ganji(cy, city, cate)
+def grap(cy, city):
+    crawl_ganji(cy, city)
     print "Done"
 
 @manager.option('-c', '--city', dest='city', type=str)

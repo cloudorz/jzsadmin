@@ -155,9 +155,9 @@ def save_content(data):
     e.save()
 
 
-def crawl_ganji(cy, city, cate):
+def crawl_ganji(cy, city):
 
-    for url in get_url_set(cy, cate):
+    for url in get_url_set(cy):
         url_all = r'http://%s.ganji.com%s' % (cy, url) 
         content_dict = get_detail(url_all)
         if content_dict:
