@@ -116,13 +116,6 @@ def edit_entry(eid):
 
     if form.validate_on_submit():
 
-        form.populate_obj(entry)
-
-        entry.city_label = request.form.get('city_label', 'hangzhou')
-        entry.status = 'wait' # wait for check again
-        entry.save()
-        flash(u"更新成功")
-
         next_url = form.next.data
         if entry.status == 'block':
             next_entry = Entry.query.filter(
@@ -134,6 +127,13 @@ def edit_entry(eid):
             else:
                 if not next_url:
                     next_url = url_for('list_entry')
+
+        form.populate_obj(entry)
+
+        entry.city_label = request.form.get('city_label', 'hangzhou')
+        entry.status = 'wait' # wait for check again
+        entry.save()
+        flash(u"更新成功")
 
         return redirect(next_url)
 
