@@ -1,12 +1,37 @@
 # coding: utf-8
 
-import re, datetime
+import re, datetime, urllib, urllib2
 
 from pyquery import PyQuery as _
 from jzsadmin.models import Entry
 
 is_phone = re.compile(r'((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)')
 now = datetime.datetime.utcnow
+headers = {
+        'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) \
+                AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.151 \
+                Safari/535.19",
+        }
+
+
+def request(url, data=dict()):
+    
+    data = urllib.urlencode(data) if data else None
+    req = urllib2.Request(
+            url=url,
+            data=data,
+            headers=headers
+            )
+    try:
+        request = urllib2.urlopen(req)
+        source = request.read()
+        request.close()
+    except:
+        source = None
+        print "Connect timeout"
+
+    return source
+
 
 def get_url_set(city, cate):
     print 'Get list of %s' % cate
@@ -14,22 +39,27 @@ def get_url_set(city, cate):
     n = 0
     while 1:
         url = r"http://%s.ganji.com/%s/f%d" % (city, cate, n)
-        doc = _(url)
-        nodes = doc('.list .ft-14')
-        if not nodes:
-            break
-        for node in nodes:
-            url_ = _(node).attr('href')
-            text = _(node).text()
-            if not Entry.query.filter_by(title=text).first():
-                print url_
-                yield url_
+        content = request(url)
+        if content:
+            doc = _(content)
+            nodes = doc('.list .ft-14')
+            if not nodes:
+                break
+            for node in nodes:
+                url_ = _(node).attr('href')
+                text = _(node).text()
+                if not Entry.query.filter_by(title=text).first():
+                    print url_
+                    yield url_
         n += 32
 
 
 def get_detail(url):
     data = {}
-    doc = _(url)
+    content = request(url)
+    if not content: return
+
+    doc = _(content)
 
     # check 
     check_list = doc('.bd-box .rz-icon span')
@@ -56,9 +86,7 @@ def get_detail(url):
     data['title'] = _(brief_list[0]).text()
 
     #
-    c1, c2 = doc('.contList')[:2] 
-
-    c1_list = c1.find('li')
+    c1_list, c2_list = doc('.contList')[:2] 
 
     # address
     data['address'] = _(c1_list[0]).find('.wt2').text()
@@ -82,7 +110,6 @@ def get_detail(url):
     else:
         data['serviceareas'] = set()
 
-    c2_list = c2.find('li')
     # linkman
     if len(c2_list) >= 1:
         data['linkman'] = _(c2_list[0]).find('.wt2 strong').text()
