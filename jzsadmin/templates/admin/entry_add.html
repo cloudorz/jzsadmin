@@ -78,7 +78,7 @@
 <div style="text-align:center">
     {{ form.submit() }}
     <input type="button" onclick="history.back(-1);" value="返回" />
-    {% if entry and (entry.permissions.delete.can() or entry.status == 'block') %}<a href="{{ url_for('del_entry', eid=eid) }}"></a>{% endif %}
+    {% if entry and (entry.permissions.delete.can() or entry.status == 'block') %}<a href="{{ url_for('del_entry', eid=eid) }}">删除</a>{% endif %}
 </div> 
 </form>
 {% endblock %}
