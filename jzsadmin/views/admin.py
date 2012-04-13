@@ -339,6 +339,18 @@ def del_city(cid):
 
     return redirect(url_for('list_city'))
 
+@admin.route('/city/<cid>/status')
+@normal.require(401)
+def change_city_status(cid):
+    
+    city = City.query.get_or_404(cid)
+    city.permissions.delete.test(403)
+    city.block = not city.block
+    city.save()
+
+    return redirect(url_for('list_city'))
+
+# others operation
 # others operation
 @admin.route('/entry/status/')
 @admin.route('/entry/status/<int:page>/')
