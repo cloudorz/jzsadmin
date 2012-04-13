@@ -36,6 +36,6 @@
 <div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
 <div style="text-align:right">
 {% from "macros/_page.html" import render_pagination %}
-{{ render_pagination(p, 'list_entry',kwargs={'q':request.args.get('q','')}) }}
+{{ render_pagination(p, 'list_city',kwargs={'q':request.args.get('q','')}) }}
 </div>
 {% endblock %}
