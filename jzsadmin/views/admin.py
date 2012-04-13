@@ -348,6 +348,18 @@ def change_city_status(cid):
     city.block = not city.block
     city.save()
 
+    # change all entries in a city status 
+    if city.block:
+        entries = Entry.query.filter(Entry.status=='show')
+        new_status = 'wait'
+    else:
+        entries = Entry.query.filter(Entry.status=='wait')
+        new_status = 'show'
+
+    for e in entries:
+        e.status = new_status
+        e.save()
+
     return redirect(url_for('list_city'))
 
 # others operation
