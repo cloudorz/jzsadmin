@@ -19,7 +19,8 @@
   <tr class="table-field">
     <td width="15%" class="t_b">No.</td>
     <td width="20%" class="t_b">label</td>
-    <td width="30%" class="t_b">城市名</td>
+    <td width="20%" class="t_b">城市名</td>
+    <td width="10%" class="t_b">状态</td>
     <td width="25%" class="t_b">操作</td>
     <td width="10%" class="t_b">选择</td>
   </tr>
@@ -27,8 +28,9 @@
   <tr {% if loop.index is even %}class="td1"{% else %}class="td2"{% endif %}>
     <td>{{ i.no }}</td>
     <td>{{ i.label }}</td>
-    <td><a href="{{ url_for('edit_city', cid=i.pk, next=request.path) }}">{{ i.name }}</td>
-        <td><a href="{{ url_for('edit_city', cid=i.pk, next=request.path) }}">编辑</a> {% if i.permissions.delete.can() %}* <a href="{{ url_for('del_city', cid=i.pk) }}">删除</a> * <a href="{{ url_for('change_city_status', cid=i.pk) }}">{{ i.block and "发布" or "禁用" }}</a>{% endif %}</td>
+    <td><a href="{{ url_for('edit_city', cid=i.pk, next=request.path) }}">{{ i.name }}</a></td>
+    <td>{{ i.block and "禁用" or "发布" }}</td>
+    <td><a href="{{ url_for('edit_city', cid=i.pk, next=request.path) }}">编辑</a> {% if i.permissions.delete.can() %}* <a href="{{ url_for('del_city', cid=i.pk) }}">删除</a> * <a href="{{ url_for('change_city_status', cid=i.pk) }}">{{ i.block and "发布" or "禁用" }}</a>{% endif %}</td>
     <td><input type="checkbox" name="id" value="{{ i.pk }}"></td>
   </tr>
 {% endfor %}
