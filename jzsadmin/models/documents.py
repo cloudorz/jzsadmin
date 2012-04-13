@@ -17,6 +17,7 @@ now = datetime.datetime.utcnow
 def hash(data):
     return  hashlib.md5(data).hexdigest()
 
+
 class UserQuery(BaseQuery):
 
     def from_identity(self, identity):
@@ -27,6 +28,7 @@ class UserQuery(BaseQuery):
         identity.user = user
 
         return user
+
 
 class HashField(db.StringField):
     def set_value(self, instance, value, from_db=False):
@@ -220,6 +222,7 @@ class City(db.Document):
 
     name = db.StringField()
     _no = db.IntField(db_field='no')
+    block = db.BoolField(default=False)
     label = db.StringField()
 
     def maybe_save(self, safe=None):
@@ -268,6 +271,7 @@ class Cate(db.Document):
     
     name = db.StringField()
     _no = db.IntField(db_field='no')
+    logo = db.StringField()
     label = db.StringField()
 
     def maybe_save(self, safe=None):

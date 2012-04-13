@@ -17,11 +17,13 @@ class LoginForm(Form):
     submit = SubmitField(u"登录")
     next = HiddenField()
 
+
 def get_cities():
     cities = Cate.query
     res = [(c.label, c.name) for c in cities]
 
     return res
+
 
 class EntryForm(Form):
     title = TextField(u"标题", validators=[required(message=u"必填")])
@@ -39,13 +41,16 @@ class EntryForm(Form):
     submit = SubmitField(u"提交")
     next = HiddenField()
 
+
 class CateForm(Form):
     name = TextField(u"分类名称", validators=[required(message=u"必填")])
     label = TextField(u"label", validators=[required(message=u"必填")])
+    logo = TextField(u"图标css类", validators=[required(message=u"必填")])
     no = TextField(u"序号", validators=[required(message=u"必填")])
 
     submit = SubmitField(u"提交")
     next = HiddenField()
+
 
 class CityForm(Form):
     name = TextField(u"城市名称", validators=[required(message=u"必填")])

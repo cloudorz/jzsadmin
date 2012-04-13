@@ -132,8 +132,8 @@ def add_entry():
 @normal.require(401)
 def edit_entry(eid):
     entry = Entry.query.get_or_404(eid)
-    cities = City.query.ascending(City.no)
-    cates = Cate.query.ascending(City.no)
+    cities = City.query.ascending(City._no)
+    cates = Cate.query.ascending(City._no)
 
 
     form = EntryForm(request.form, entry, next=request.args.get('next',''))
@@ -372,8 +372,8 @@ def wait_entry_list(page=1):
     query = Entry.query.filter(*tuple(condtions))
 
     p = query.descending(Entry.created).paginate(page, per_page=Entry.PERN)
-    cities = City.query.ascending(City.no)
-    cates = Cate.query.ascending(City.no)
+    cities = City.query.ascending(City._no)
+    cates = Cate.query.ascending(City._no)
     statuses = [
             {'label': 'show', 'name': u'显示'},
             {'label': 'wait', 'name': u'等待'}, 
