@@ -158,7 +158,7 @@ def save_content(data):
 def crawl_ganji(cy, city):
 
     for url in get_url_set(cy):
-        url_all = r'http://%s.ganji.com%s' % (cy, '/'.join(url.split('/')[:3])) 
+        url_all = r'http://%s.ganji.com%s/' % (cy, '/'.join(url.split('/')[:3])) 
         content_dict = get_detail(url_all)
         if content_dict:
             content_dict['city_label'] = city
