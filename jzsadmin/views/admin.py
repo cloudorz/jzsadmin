@@ -252,7 +252,7 @@ def edit_cate(cid):
 
         return redirect(next_url)
 
-    return render_template("admin/cate_add.html", form=form)
+    return render_template("admin/category_add.html", form=form)
 
 
 @admin.route('/cate/<cid>/del', methods=('GET',))
