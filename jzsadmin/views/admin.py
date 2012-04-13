@@ -205,7 +205,7 @@ def list_cate(page=1):
     else:
         query = Cate.query
 
-    p = query.descending(Cate._no).paginate(page, per_page=Cate.PERN)
+    p = query.ascending(Cate._no).paginate(page, per_page=Cate.PERN)
 
     return render_template("admin/category_list.html", p=p)
 
@@ -281,7 +281,7 @@ def list_city(page=1):
     else:
         query = City.query
 
-    p = query.descending(City._no).paginate(page, per_page=City.PERN)
+    p = query.ascending(City._no).paginate(page, per_page=City.PERN)
 
     return render_template("admin/city_list.html", p=p)
 
