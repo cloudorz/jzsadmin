@@ -222,7 +222,7 @@ class City(db.Document):
 
     name = db.StringField()
     _no = db.IntField(db_field='no')
-    block = db.BoolField(default=False)
+    block = db.BoolField(default=True)
     label = db.StringField()
 
     def maybe_save(self, safe=None):
