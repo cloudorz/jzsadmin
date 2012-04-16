@@ -350,10 +350,12 @@ def change_city_status(cid):
 
     # change all entries in a city status 
     if city.block:
-        entries = Entry.query.filter(Entry.status=='show')
+        entries = Entry.query.filter(Entry.status=='show',
+                Entry.city_label==city.city_label)
         new_status = 'wait'
     else:
-        entries = Entry.query.filter(Entry.status=='wait')
+        entries = Entry.query.filter(Entry.status=='wait',
+                Entry.city_label==city.city_label)
         new_status = 'show'
 
     for e in entries:
