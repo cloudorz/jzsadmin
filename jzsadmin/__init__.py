@@ -95,7 +95,7 @@ def configure_template_filters(app):
     @app.template_filter()
     def intrange(value, page):
         if page > 6 and value > 10:
-            res = range(page-5, page+5 if page+5 <= value else value)
+            res = range(page-5, page+5 if page+5 <= value else value+1)
         else:
             max_v = 10 if value >= 10 else value
             res = range(1, 1+max_v)
