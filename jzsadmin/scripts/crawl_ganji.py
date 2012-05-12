@@ -139,7 +139,7 @@ def save_content(data):
     e.tags = set()
     e.updated = now()
     e.created = now()
-    e.grades = []
+    e.init_counters()
     e.city_label = data['city_label']
     e.title = data['title']
     e.brief = data['brief'] or " "

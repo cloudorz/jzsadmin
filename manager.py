@@ -48,13 +48,5 @@ def delcity(city):
         e.remove()
     print 'Done'
 
-@manager.option('-c', '--city', dest='city', type=str)
-def initcounter(city):
-    for e in Entry.query:
-        if not hasattr(e, 'c_click'):
-            e.init_counters()
-            e.save()
-    print 'Done'
-
 if __name__ == "__main__":
     manager.run()
