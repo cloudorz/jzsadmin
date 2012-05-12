@@ -49,7 +49,7 @@ def delcity(city):
     print 'Done'
 
 def initcounter():
-    for e Entry.query:
+    for e in Entry.query:
         if 'c_click' not in e:
             e.init_counters()
     print 'Done'
