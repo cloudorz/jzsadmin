@@ -95,6 +95,16 @@ class User(db.Document):
             return self.mongo_id.generation_time
 
 
+class Counter(db.Document):
+    click = db.SetField(item_type=db.StringField())
+    sms = db.SetField(item_type=db.StringField())
+    call = db.SetField(item_type=db.StringField())
+    wrongphone = db.SetField(item_type=db.StringField())
+    good = db.SetField(item_type=db.StringField())
+    bad = db.SetField(item_type=db.StringField())
+    collection = db.SetField(item_type=db.StringField())
+    
+
 class Entry(db.Document):
 
     PERN = 20
@@ -105,6 +115,7 @@ class Entry(db.Document):
     city_label = db.StringField(max_length=30)
     address = db.StringField() 
     worktime = db.StringField()
+    counter = db.Document(Counter)
     _serviceitems = db.SetField(db_field="serviceitems", item_type=db.StringField())
     _serviceareas = db.SetField(db_field="serviceareas", item_type=db.StringField())
     _contracts = db.ListField(db_field="contracts", item_type=db.StringField())

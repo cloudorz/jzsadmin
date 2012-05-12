@@ -49,9 +49,10 @@
   <tr class="table-field">
     <td width="20%" class="t_b">标题</td>
     <td width="30%" class="t_b">简介</td>
-    <td width="15%" class="t_b">城市</td>
+    <td width="10%" class="t_b">城市</td>
     <td width="10%" class="t_b">状态</td>
-    <td width="15%" class="t_b">操作</td>
+    <td width="10%" class="t_b">指数</td>
+    <td width="10%" class="t_b">操作</td>
     <td width="10%" class="t_b">选择</td>
   </tr>
 {% for i in p.items %}
@@ -59,6 +60,7 @@
     <td><a href="{{ url_for('edit_entry', eid=i.pk, next=request.path) }}">{{ i.title }}</a></td>
     <td>{{ i.brief }}</td>
     <td>{{ i.city_label }}</td>
+    <td>{{ i.counter.good|length }}/{{ i.counter.bad|length }}/{{ i.counter.click|length }}/{{ i.counter.sms|length }}/{{ i.counter.call|length }}/{{ i.counter.collection|length }}</td>
     <td>{{ i.status }}</td>
     <td><a href="{{ url_for('edit_entry', eid=i.pk, next=request.path) }}">编辑</a> {% if i.permissions.delete.can() %}* <a href="{{ url_for('del_entry', eid=i.pk, next=request.path) }}">删除</a>{% endif %}</td>
     <td><input type="checkbox" name="id" value="{{ i.pk }}"></td>
