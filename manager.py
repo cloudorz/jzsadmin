@@ -50,7 +50,7 @@ def delcity(city):
 
 @manager.option('-c', '--city', dest='city', type=str)
 def initcounter(city):
-    for e in Entry.query:
+    for e in Entry.query.all():
         if 'c_click' not in e:
             e.init_counters()
     print 'Done'
