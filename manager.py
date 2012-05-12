@@ -50,8 +50,8 @@ def delcity(city):
 
 @manager.option('-c', '--city', dest='city', type=str)
 def initcounter(city):
-    for e in Entry.query.all():
-        if 'c_click' not in e:
+    for e in Entry.query:
+        if not hasattr(e, 'c_click'):
             e.init_counters()
     print 'Done'
 
