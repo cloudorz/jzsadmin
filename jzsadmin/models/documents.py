@@ -96,14 +96,25 @@ class User(db.Document):
 
 
 class Counter(db.Document):
+
     click = db.SetField(item_type=db.StringField())
     sms = db.SetField(item_type=db.StringField())
     call = db.SetField(item_type=db.StringField())
-    wrongphone = db.SetField(item_type=db.StringField())
+    empty = db.SetField(item_type=db.StringField())
     good = db.SetField(item_type=db.StringField())
     bad = db.SetField(item_type=db.StringField())
     collection = db.SetField(item_type=db.StringField())
     
+    @cached_property
+    def pk(self):
+        return str(self.mongo_id)
+
+    def maybe_save(self, safe=None):
+        try:
+            self.save()
+        except:
+            abort(400)
+
 
 class Entry(db.Document):
 
@@ -216,10 +227,6 @@ class Entry(db.Document):
     @cached_property
     def permissions(self):
         return self.Permissions(self)
-
-    @cached_property
-    def pk(self):
-        return str(self.mongo_id)
 
     @property
     def created_time(self):
