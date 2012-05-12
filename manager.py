@@ -48,7 +48,7 @@ def delcity(city):
         e.remove()
     print 'Done'
 
-def initcounter:
+def initcounter():
     for e Entry.query:
         if 'c_click' not in e:
             e.init_counters()
