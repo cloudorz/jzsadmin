@@ -112,7 +112,7 @@ def add_entry():
         entry = Entry()
         entry.updated = now()
         entry.created = now()
-        entry.grades = []
+        entry.init_counters()
         entry.city_label = request.form.get('city_label')
         form.populate_obj(entry)
 

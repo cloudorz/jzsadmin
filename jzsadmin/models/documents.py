@@ -95,27 +95,6 @@ class User(db.Document):
             return self.mongo_id.generation_time
 
 
-class Counter(db.Document):
-
-    click = db.SetField(item_type=db.StringField())
-    sms = db.SetField(item_type=db.StringField())
-    call = db.SetField(item_type=db.StringField())
-    empty = db.SetField(item_type=db.StringField())
-    good = db.SetField(item_type=db.StringField())
-    bad = db.SetField(item_type=db.StringField())
-    collection = db.SetField(item_type=db.StringField())
-    
-    @cached_property
-    def pk(self):
-        return str(self.mongo_id)
-
-    def maybe_save(self, safe=None):
-        try:
-            self.save()
-        except:
-            abort(400)
-
-
 class Entry(db.Document):
 
     PERN = 20
@@ -138,7 +117,25 @@ class Entry(db.Document):
             default='wait')
     updated = db.DateTimeField()
     created = db.DateTimeField()
+    # counters
+    c_click = db.SetField(item_type=db.StringField())
+    c_sms = db.SetField(item_type=db.StringField())
+    c_call = db.SetField(item_type=db.StringField())
+    c_empty = db.SetField(item_type=db.StringField())
+    c_good = db.SetField(item_type=db.StringField())
+    c_bad = db.SetField(item_type=db.StringField())
+    c_collection = db.SetField(item_type=db.StringField())
 
+
+    def init_counters(self):
+        self.c_click = set()
+        self.c_sms = set()
+        self.c_call = set()
+        self.c_empty = set()
+        self.c_good = set()
+        self.c_bad = set()
+        self.c_collection = set()
+        self.grades = []
 
     @cached_property
     def pk(self):
