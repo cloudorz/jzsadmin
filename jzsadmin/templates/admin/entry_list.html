@@ -8,7 +8,7 @@
 <div><img src="{{ config['STATIC_PATH'] }}admin/img/blank.gif" width="1" height="8"></div>
 <table width="100%" border="0" cellspacing="1" cellpadding="0" class="twidth">
   <tr>
-    <td align="left" height="30" colspan="6" bgcolor="#FFFFFF" style="padding-left:10px;">
+    <td align="left" height="30" colspan="7" bgcolor="#FFFFFF" style="padding-left:10px;">
     <div style="float:right;padding-right:10px;"><a href="{{ url_for('add_entry') }}">新增</a></div>
     <form method="get" action="">
     <select id="city" name="c">
@@ -60,8 +60,8 @@
     <td><a href="{{ url_for('edit_entry', eid=i.pk, next=request.path) }}">{{ i.title }}</a></td>
     <td>{{ i.brief }}</td>
     <td>{{ i.city_label }}</td>
-    <td>{% if i.counter %}{{ i.counter.good|length }}/{{ i.counter.bad|length }}/{{ i.counter.click|length }}/{{ i.counter.sms|length }}/{{ i.counter.call|length }}/{{ i.counter.collection|length }}{% endif %}</td>
     <td>{{ i.status }}</td>
+    <td>{% if i.counter %}{{ i.counter.good|length }}/{{ i.counter.bad|length }}/{{ i.counter.click|length }}/{{ i.counter.sms|length }}/{{ i.counter.call|length }}/{{ i.counter.collection|length }}{% endif %}</td>
     <td><a href="{{ url_for('edit_entry', eid=i.pk, next=request.path) }}">编辑</a> {% if i.permissions.delete.can() %}* <a href="{{ url_for('del_entry', eid=i.pk, next=request.path) }}">删除</a>{% endif %}</td>
     <td><input type="checkbox" name="id" value="{{ i.pk }}"></td>
   </tr>
