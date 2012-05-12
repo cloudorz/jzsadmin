@@ -48,6 +48,11 @@ def delcity(city):
         e.remove()
     print 'Done'
 
+def initcounter:
+    for e Entry.query:
+        if 'c_click' not in e:
+            e.init_counters()
+    print 'Done'
 
 if __name__ == "__main__":
     manager.run()
