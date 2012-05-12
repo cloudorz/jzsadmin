@@ -53,6 +53,7 @@ def initcounter(city):
     for e in Entry.query:
         if not hasattr(e, 'c_click'):
             e.init_counters()
+            e.save()
     print 'Done'
 
 if __name__ == "__main__":
