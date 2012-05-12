@@ -115,7 +115,7 @@ class Entry(db.Document):
     city_label = db.StringField(max_length=30)
     address = db.StringField() 
     worktime = db.StringField()
-    counter = db.Document(Counter)
+    counter = db.DocumentField(Counter)
     _serviceitems = db.SetField(db_field="serviceitems", item_type=db.StringField())
     _serviceareas = db.SetField(db_field="serviceareas", item_type=db.StringField())
     _contracts = db.ListField(db_field="contracts", item_type=db.StringField())
